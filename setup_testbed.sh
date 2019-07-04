@@ -3,6 +3,7 @@
 set -ex
 
 source $(dirname $0)/environment.sh
+HERE=$(realpath $(dirname $0))
 
 for unit in 'apt-daily.timer' 'apt-daily-upgrade.timer'; do
 	sudo systemctl disable --now $unit
@@ -25,7 +26,7 @@ sudo env DEBIAN_FRONTEND=noninteractive \
 		libxrender1 libfontconfig1 libxi6 vnc4server
 
 echo "Building and loading qdisc modules"
-./qdisc_modules_init.sh
+${HERE}/qdisc_modules_init.sh
 
 ${HERE}/iproute2-addons/build.sh
 
