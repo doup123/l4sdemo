@@ -33,9 +33,10 @@ ${HERE}/iproute2-addons/build.sh
 # install Qt 5.0.1 - has to be this version to build qwt
 echo "Installing Qt - proceed with the dialog when prompted."
 QT_VERSION=qt-linux-opensource-5.0.1-x86_64-offline.run
+mkdir -p qt-qwt
 QT_INSTALLER=qt-qwt/$QT_VERSION
 if [ ! -x $QT_INSTALLER ]; then
-	curl https://download.qt.io/archive/qt/5.0/5.0.1/$QT_VERSION -o $QT_INSTALLER
+	curl -L https://download.qt.io/archive/qt/5.0/5.0.1/$QT_VERSION -o $QT_INSTALLER
 	chmod +x $QT_INSTALLER
 fi
 if [ ! -x /home/$(whoami)/Qt5.0.1/5.0.1/gcc_64/bin/qmake ]; then
