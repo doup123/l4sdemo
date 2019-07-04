@@ -7,8 +7,8 @@ fi
 set -e
 
 LAB_PREFIX=${LAB_PREFIX:-l4s}
-LAB_ID=${LAB_ID:-171}  # ab
-SSH_KEY=${SSH_KEY:-id_rsa.pub}
+LAB_ID=${LAB_ID:-10}  # ab 
+SSH_KEY=${SSH_KEY:-~/.ssh/id_rsa.pub}
 
 HERE=$(realpath $(dirname $0))
 
@@ -317,7 +317,7 @@ for i in /sys/class/net/*; do
 		break
 	fi
 done
-export SRC_NET="${PREFIXES[$CLIENT_BRIDGE]}"
+export SRC_NET="${PREFIXES[$SERVER_BRIDGE]}.0/24"
 export SERVER_A=$(host_ip $MAC_SERVER_A)
 export SERVER_B=$(host_ip $MAC_SERVER_B)
 export CLIENT_A=$(host_ip $MAC_CLIENT_A)
